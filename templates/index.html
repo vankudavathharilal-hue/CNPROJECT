@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Connectivity & Latency Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div>
+            <p class="eyebrow">COMPUTER NETWORKS PROJECT</p>
+            <h1>Network Connectivity & Latency Monitor</h1>
+            <p class="subtitle">Monitor reachability, latency, DNS and TCP connectivity.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="control-card">
+            <label for="host">Hostname / IP Address</label>
+            <div class="controls">
+                <input id="host" type="text" value="google.com" placeholder="e.g. google.com">
+                <button id="checkBtn" onclick="checkNetwork()">Check Network</button>
+            </div>
+        </section>
+
+        <section class="cards">
+            <article class="card">
+                <span class="card-label">NETWORK STATUS</span>
+                <strong id="status">WAITING</strong>
+            </article>
+
+            <article class="card">
+                <span class="card-label">LATENCY</span>
+                <strong id="latency">-- ms</strong>
+            </article>
+
+            <article class="card">
+                <span class="card-label">IP ADDRESS</span>
+                <strong id="ip">--</strong>
+            </article>
+
+            <article class="card">
+                <span class="card-label">TCP :443</span>
+                <strong id="tcp">--</strong>
+            </article>
+        </section>
+
+        <section class="chart-card">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">LIVE DATA</p>
+                    <h2>Latency History</h2>
+                </div>
+                <button class="secondary" onclick="clearChart()">Clear</button>
+            </div>
+            <canvas id="latencyChart"></canvas>
+        </section>
+
+        <section class="info-card">
+            <h2>Tests performed</h2>
+            <div class="info-grid">
+                <div><b>Ping</b><span>Reachability and round-trip latency</span></div>
+                <div><b>DNS</b><span>Hostname to IPv4 resolution</span></div>
+                <div><b>TCP</b><span>Port 443 connectivity test</span></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
